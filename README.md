@@ -19,6 +19,13 @@ This project aims to bridge the gap between classic Newtonian flight physics and
 - **Multiplayer:** Godot High-level Multiplayer API (ENet/P2P).
 - **Data Format:** JSON-based world and ship definitions.
 
+## 📂 Repository Structure
+This project is part of the [donkey-projects](https://github.com/donkey-projects) organization. To facilitate development, the following repositories are used:
+
+* **Development:** [ParSecNova](https://github.com/donkey-projects/ParSecNova) (This repository)
+* **Legacy Source:** [parsec](https://github.com/donkey-projects/parsec) (Original source code fork for logic reference)
+* **Legacy Assets:** [orig-openparsec-assets](https://github.com/donkey-projects/orig-openparsec-assets) (Original artwork and sound archives)
+
 ## 🚀 Getting Started
 
 *(Note: This project is currently in the early conceptual/prototyping stage.)*
@@ -29,5 +36,8 @@ This project aims to bridge the gap between classic Newtonian flight physics and
 
 ### Installation
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/Cute-Donkey/ParSecNova.git
+```bash
+   git clone https://github.com/donkey-projects/ParSecNova.git
+```
+
+For detailed licensing and a list of original contributors, see **[CREDITS.md](CREDITS.md)**.
