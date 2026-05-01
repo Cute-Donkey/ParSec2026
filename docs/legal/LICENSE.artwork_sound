@@ -1,0 +1,63 @@
+This file contains the license information for the artwork and sound
+assets of the ParSec project.
+
+1. General License
+------------------
+
+Unless otherwise stated, all artwork and sound assets in this 
+repository are licensed under the Creative Commons Attribution-ShareAlike 
+License. To view a copy of this license, visit 
+http://creativecommons.org/licenses/by-sa/1.0/ or send a letter to 
+Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
+
+The "ParSec Development Team" is the collective name for the authors 
+of the assets, unless an individual author is named for a specific 
+asset.
+
+
+2. Specific Author Attributions
+-------------------------------
+
+The following authors have granted permission to use their work 
+in the ParSec project under the terms of the Creative Commons 
+Attribution-ShareAlike License:
+
+- Jesper "Zartok" Sjolte:
+  Most of the 3D models for ships, stations and other space objects.
+
+- Gunnar "BeS" Benneche:
+  Original textures for many of the 3D models.
+
+- Sami "Sekt7" Sjöberg:
+  Enhanced textures and various interface graphics.
+
+- The ParSec Artwork Team:
+  Various collective works, including explosions, particles and 
+  background planet textures.
+
+
+3. Sound Assets
+---------------
+
+The sound effects and ambient tracks are licensed under the 
+Creative Commons Attribution-ShareAlike License (version 2.0 or 1.0),
+with the exception of some legacy sounds which are provided for
+non-commercial use only within the context of the ParSec project.
+
+Authors of sound assets:
+- Members of the ParSec Development Team.
+- Contribution from various open source sound libraries (refer to 
+  individual file metadata where available).
+
+
+4. Important Note for Derived Works
+-----------------------------------
+
+If you use these assets in another project, you must give 
+appropriate credit to the "ParSec Development Team" and the 
+individual authors listed above. Any modifications or 
+derivative works must be distributed under the same or a 
+compatible license (ShareAlike).
+
+----------------------------------------------------------------------
+End of LICENSE.artwork_sound
