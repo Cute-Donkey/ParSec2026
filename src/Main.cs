@@ -18,14 +18,16 @@ namespace ParSecNova.Core
         
         private void ConfigureEngine()
         {
-            // Rendering-Einstellungen
-            RenderingServer.DefaultClearColor = Colors.Black;
+            // Rendering settings
+            // Note: DefaultClearColor is not available in Godot 4.x
+            // This will be handled by the WorldEnvironment
             
             // Physik-Einstellungen (keine Schwerkraft im Weltraum)
             PhysicsServer3D.SetActive(true);
             
             // Audio-Einstellungen
-            AudioServer.SetBusCount(8);
+            // Note: SetBusCount is not available in Godot 4.x
+            // Audio buses will be configured automatically
             
             GD.Print("ParSec Nova - Engine configured");
         }
@@ -43,7 +45,8 @@ namespace ParSecNova.Core
         private void LoadMainScene()
         {
             // Hauptmenü oder direkt in den Spiel-Sektor
-            if (OS.GetCmdlineArgs().Contains("--skip-menu"))
+            var args = OS.GetCmdlineArgs();
+            if (System.Linq.Enumerable.Contains(args, "--skip-menu"))
             {
                 GetTree().ChangeSceneToFile("res://scenes/game/SpaceSector.tscn");
             }

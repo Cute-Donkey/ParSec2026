@@ -1,12 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://er7y8q8yq4nqr"]
+[gd_scene load_steps=5 format=3 uid="uid://er7y8q8yq4nqr"]
 
-[ext_resource type="Environment" uid="uid://fq7y8q8yq4nqr" path="res://assets/environments/space_environment.tres" id="1_env"]
-[ext_resource type="Script" path="res://scripts/game/SpaceSector.cs" id="2_script"]
-[ext_resource type="PackedScene" uid="uid://gr7y8q8yq4nqr" path="res://scenes/game/Ship.tscn" id="3_ship"]
+[ext_resource type="Environment" path="res://assets/environments/default_env.tres" id="1_env"]
+[ext_resource type="PackedScene" path="res://scenes/game/Asteroid.tscn" id="2_asteroid"]
+[ext_resource type="PackedScene" path="res://scenes/game/Ship.tscn" id="3_ship"]
 
 [node name="SpaceSector" type="Node3D"]
-environment = ExtResource("1_env")
-script = ExtResource("2_script")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_env")
@@ -20,3 +18,6 @@ light_energy = 2.0
 
 [node name="PlayerShip" parent="." instance=ExtResource("3_ship")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Asteroid" parent="." instance=ExtResource("2_asteroid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
