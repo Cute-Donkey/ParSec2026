@@ -219,6 +219,43 @@
 
 ---
 
+## Phase 7: Internationalization & Localization (Week 18-19)
+
+### 7.1 Translation System
+- [ ] Extract all text strings into centralized translation system
+- [ ] Implement Godot's built-in translation system
+- [ ] Create separate translation files for each language
+- [ ] Support multiple languages (English, German, potentially others)
+- [ ] Implement runtime language switching
+
+### 7.2 Text Elements Requiring Translation
+- [ ] HUD Display Elements:
+  - Ship data sections (speed, velocity, rotation rates)
+  - Object information (sun distance, asteroid distance)
+  - Help and status messages
+- [ ] Help Dialog Content:
+  - Key bindings and control descriptions
+  - Movement controls (pitch, yaw, thrust)
+  - Special functions (emergency stop, quit game)
+  - Display information and instructions
+- [ ] Console Messages:
+  - System notifications and status updates
+  - Error messages and warnings
+
+### 7.3 Implementation Strategy
+- [ ] Use Godot's built-in translation system
+- [ ] Create translation files for each language
+- [ ] Implement language switching functionality in game settings
+- [ ] Set up fallback to German if translation is missing
+- [ ] Consider localization for number formats and date/time
+- [ ] Test all UI elements with different text lengths
+- [ ] Ensure help dialog formatting works with translated text
+
+### 7.4 Priority
+- **Medium**: Important for international accessibility but not blocking current development
+
+---
+
 ## Next Steps
 
 1. **Immediate**: Download and analyze original ParSec
@@ -227,6 +264,7 @@
 4. **Week 4**: Set up Godot project and create basic structure
 5. **Week 5**: Develop physics engine prototype
 6. **Week 6**: Implement first ship with basic controls
+7. **Week 18-19**: Implement translation system and internationalization
 
 ---
 

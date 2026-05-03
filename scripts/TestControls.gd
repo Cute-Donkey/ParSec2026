@@ -10,6 +10,8 @@ var thrust_speed: float = 10.0
 
 # HUD display variables
 var hud_label: Label
+var help_dialog: Control
+var help_visible: bool = false
 
 func _ready():
 	camera = $Ship/Camera3D
@@ -52,7 +54,7 @@ func setup_sun():
 	sun_mesh.material_override = sun_material
 	
 	# Position sun closer but still far away for visibility
-	var sun_direction = -sun.global_transform.basis.z
+	var sun_direction = -sun.global_transform.basis.z  # Same direction as light
 	sun_mesh.global_position = sun.global_position + sun_direction * 1000.0  # 1km away
 	sun_mesh.name = "SunMesh"
 	
@@ -73,15 +75,44 @@ func setup_hud():
 	hud_label.position = Vector2(10, 10)
 	hud_label.add_theme_font_size_override("font_size", 16)
 	hud_label.add_theme_color_override("font_color", Color.WHITE)
+	
+	# Create modal help dialog (initially hidden)
+	help_dialog = Control.new()
+	add_child(help_dialog)
+	help_dialog.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	help_dialog.visible = false
+	
+	# Create semi-transparent background
+	var background = ColorRect.new()
+	help_dialog.add_child(background)
+	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	background.color = Color(0, 0, 0, 0.8)  # Dark semi-transparent
+	
+	# Create help label
+	var help_label = Label.new()
+	help_dialog.add_child(help_label)
+	help_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	help_label.add_theme_font_size_override("font_size", 16)
+	help_label.add_theme_color_override("font_color", Color.WHITE)
+	help_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	help_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	
+	# Store reference for help toggle
+	self.help_dialog = help_dialog
+
+func _input(event):
+	# Toggle help with F1 key (only on key press, not hold)
+	if event is InputEventKey and event.pressed and event.keycode == KEY_F1:
+		toggle_help()
+	
+	# Quit game with ESC key
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		get_tree().quit()
 
 func _process(delta):
 	# Emergency stop with S key
 	if Input.is_key_pressed(KEY_S):  # S key
 		emergency_stop()
-	
-	# Quit game with ESC key
-	if Input.is_key_pressed(KEY_ESCAPE):
-		get_tree().quit()
 	
 	# Update HUD display
 	update_hud()
@@ -126,6 +157,41 @@ func emergency_stop():
 	
 	print("Emergency stop activated - All ship movement stopped!")
 
+func toggle_help():
+	help_visible = !help_visible
+	help_dialog.visible = help_visible
+	
+	if help_visible:
+		update_help_display()
+		print("Hilfe angezeigt")
+	else:
+		print("Hilfe versteckt")
+
+func update_help_display():
+	if help_dialog == null:
+		return
+	
+	# Get the help label from the dialog
+	var help_label = help_dialog.get_child(1)  # Background is child 0, label is child 1
+	
+	# Format help text with all key bindings
+	var help_text = "=== TASTENBELEGUNGEN ===\n\n"
+	help_text += "BEWEGUNG:\n"
+	help_text += "Pfeil hoch/runter     - Schiff neigen (Pitch)\n"
+	help_text += "Pfeil links/rechts   - Schiff drehen (Yaw)\n"
+	help_text += "Leertaste            - Vorwärts schubsen\n"
+	help_text += "Umschalt+Leertaste   - Rückwärts schubsen\n\n"
+	help_text += "SONDERFUNKTIONEN:\n"
+	help_text += "S                    - Notstopp (alle Bewegung)\n"
+	help_text += "F1                   - Diese Hilfe ein/aus\n"
+	help_text += "ESC                  - Spiel beenden\n\n"
+	help_text += "ANZEIGE:\n"
+	help_text += "HUD links oben zeigt Echtzeitdaten\n"
+	help_text += "Geschwindigkeit, Drehraten, Distanzen\n\n"
+	help_text += "Drücke F1 um Hilfe zu schließen"
+	
+	help_label.text = help_text
+
 func update_hud():
 	if hud_label == null:
 		return
@@ -152,5 +218,9 @@ func update_hud():
 	hud_text += "\n=== OBJEKTE ===\n"
 	hud_text += "Sonne Distanz: %.1f m\n" % distance_to_sun
 	hud_text += "Asteroid Distanz: %.1f m" % distance_to_asteroid
+	
+	# Add help hint if help is not visible
+	if not help_visible:
+		hud_text += "\n\n[F1 für Hilfe]"
 	
 	hud_label.text = hud_text
