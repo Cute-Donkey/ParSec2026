@@ -3,14 +3,19 @@
 [ext_resource type="Environment" path="res://assets/environments/default_env.tres" id="1_env"]
 [ext_resource type="Script" path="res://scripts/TestControls.gd" id="test_controls"]
 
-[sub_resource type="BoxMesh" id="ShipMesh_1"]
-size = Vector3(2, 1, 3)
+[sub_resource type="SphereMesh" id="AsteroidMesh_1"]
+radius = 1.5
+height = 2.5
+radial_segments = 12
+rings = 8
 
-[sub_resource type="StandardMaterial3D" id="ShipMaterial_1"]
-albedo_color = Color(0.8, 0.2, 0.2, 1)
+[sub_resource type="StandardMaterial3D" id="AsteroidMaterial_1"]
+albedo_color = Color(0.4, 0.3, 0.2, 1)
+roughness = 0.8
+metallic = 0.0
 
-[sub_resource type="BoxShape3D" id="ShipShape_1"]
-size = Vector3(2, 1, 3)
+[sub_resource type="SphereShape3D" id="AsteroidShape_1"]
+radius = 1.5
 
 [node name="SimplePrototype" type="Node3D"]
 script = ExtResource("test_controls")
@@ -32,11 +37,11 @@ mass = 50.0
 gravity_scale = 0.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Asteroid"]
-mesh = SubResource("ShipMesh_1")
-material_override = SubResource("ShipMaterial_1")
+mesh = SubResource("AsteroidMesh_1")
+material_override = SubResource("AsteroidMaterial_1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Asteroid"]
-shape = SubResource("ShipShape_1")
+shape = SubResource("AsteroidShape_1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
