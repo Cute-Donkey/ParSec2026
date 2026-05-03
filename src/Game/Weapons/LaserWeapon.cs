@@ -2,12 +2,35 @@ using Godot;
 
 namespace ParSecNova.Game.Weapons
 {
+    /// <summary>
+    /// Weapon system for firing laser projectiles.
+    /// Manages fire rate, damage, and projectile creation.
+    /// </summary>
     public partial class LaserWeapon : Node3D
     {
+        /// <summary>
+        /// Damage dealt by each laser projectile.
+        /// </summary>
         [Export] public float Damage { get; set; } = 50.0f;
-        [Export] public float FireRate { get; set; } = 2.0f; // shots per second
+        
+        /// <summary>
+        /// Number of shots that can be fired per second.
+        /// </summary>
+        [Export] public float FireRate { get; set; } = 2.0f;
+        
+        /// <summary>
+        /// Speed of laser projectiles in units per second.
+        /// </summary>
         [Export] public float LaserSpeed { get; set; } = 1000.0f;
+        
+        /// <summary>
+        /// Lifetime of laser projectiles before auto-destruction.
+        /// </summary>
         [Export] public float LaserLifetime { get; set; } = 2.0f;
+        
+        /// <summary>
+        /// Scene template for laser projectiles.
+        /// </summary>
         [Export] public PackedScene LaserScene { get; set; }
         
         private float _timeSinceLastShot = 0.0f;
