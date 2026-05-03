@@ -6,6 +6,13 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: write
+  actions: read
+  packages: write
+  pages: write
+  id-token: write
+
 env:
   GODOT_VERSION: 4.6.2
   DOTNET_VERSION: 8.0.x
