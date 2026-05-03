@@ -92,4 +92,13 @@ godot --headless --skip-menu
 godot --editor
 ```
 
+### Known Issues
+
+#### Web Canvas Scaling
+The web version currently exhibits a canvas scaling issue where the game renders at a very low internal resolution (64x64), resulting in pixelation. This is a documented limitation of Godot's web export system when using CLI/headless builds.
+
+**Details:** See [docs/web-canvas-scaling-issue.md](docs/web-canvas-scaling-issue.md) for complete analysis and attempted solutions.
+
+**Current Status:** The web version is functional but pixelated. Desktop builds are unaffected.
+
 For detailed licensing and a list of original contributors, see **[CREDITS.md](CREDITS.md)**.
