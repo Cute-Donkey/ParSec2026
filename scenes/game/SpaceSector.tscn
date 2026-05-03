@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://er7y8q8yq4nqr"]
+
+[ext_resource type="Environment" uid="uid://fq7y8q8yq4nqr" path="res://assets/environments/space_environment.tres" id="1_env"]
+[ext_resource type="Script" path="res://scripts/game/SpaceSector.cs" id="2_script"]
+[ext_resource type="PackedScene" uid="uid://gr7y8q8yq4nqr" path="res://scenes/game/Ship.tscn" id="3_ship"]
+
+[node name="SpaceSector" type="Node3D"]
+environment = ExtResource("1_env")
+script = ExtResource("2_script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_env")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 20)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 10, 0)
+light_energy = 2.0
+
+[node name="PlayerShip" parent="." instance=ExtResource("3_ship")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

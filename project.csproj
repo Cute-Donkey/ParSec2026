@@ -1,0 +1,25 @@
+<Project Sdk="Godot.NET.Sdk/4.2.0">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>ParSecNova</RootNamespace>
+    <AssemblyName>ParSecNova</AssemblyName>
+    <GodotSourceGeneratorProperties>GodotSourceGeneratorProperties</GodotSourceGeneratorProperties>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Godot.SourceGenerators" Version="4.2.0" />
+    <PackageReference Include="GodotSharp" Version="4.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Text.Json" Version="8.0.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="src/**/*.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="assets/**/*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

@@ -28,7 +28,7 @@ This project is part of the [donkey-projects](https://github.com/donkey-projects
 
 ## 🚀 Getting Started
 
-*(Note: This project is currently in the early conceptual/prototyping stage.)*
+**⚠️ Important Notice:** This project is currently in **early development**. We have completed the analysis and planning phase (Phase 1) and set up the basic project structure (Phase 1.4). The actual game implementation (Phase 2+) has not yet begun. Please see the [Project Plan](plans/) for detailed development progress.
 
 ### Prerequisites
 - .NET SDK (8.0 or higher)
@@ -38,6 +38,58 @@ This project is part of the [donkey-projects](https://github.com/donkey-projects
 1. Clone the repository:
 ```bash
    git clone https://github.com/donkey-projects/ParSecNova.git
+   cd ParSecNova
+```
+
+2. Open the project in Godot:
+```bash
+   godot --editor
+```
+
+### Current Development Status
+- ✅ **Phase 1.1**: Original ParSec Analysis (completed)
+- ✅ **Phase 1.2**: Technical Requirements (completed)
+- ✅ **Phase 1.3**: Asset Analysis & AI Modernization (completed)
+- ✅ **Phase 1.4**: Project Structure Setup (completed)
+- ⏳ **Phase 2**: Early Prototype (upcoming)
+
+### Project Structure
+```
+ParSecNova/
+├── src/                    # C# source code
+│   ├── Core/              # Core systems (ECS, Physics, Network)
+│   ├── Game/              # Game logic (Ships, Weapons, Environment)
+│   └── Systems/           # Manager classes (Game, Asset, Input)
+├── assets/                # Game assets
+│   ├── models/            # 3D models (glTF/GLB)
+│   ├── textures/          # Textures (PNG/WebP)
+│   ├── sounds/            # Audio files (WAV/OGG)
+│   └── worlds/            # JSON world data
+├── scenes/                # Godot scenes
+│   ├── core/              # Core scenes (Main, GameManager)
+│   ├── game/              # Game scenes (SpaceSector, Ship)
+│   └── ui/                # UI scenes (MainMenu, HUD)
+├── tools/                 # Development tools
+├── tests/                 # Unit tests
+└── build/                 # Build output
+```
+
+### Building
+```bash
+# Make build script executable
+chmod +x build.sh
+
+# Build for all platforms
+./build.sh
+```
+
+### Running
+```bash
+# Run with Godot
+godot --headless --skip-menu
+
+# Or open in editor
+godot --editor
 ```
 
 For detailed licensing and a list of original contributors, see **[CREDITS.md](CREDITS.md)**.
