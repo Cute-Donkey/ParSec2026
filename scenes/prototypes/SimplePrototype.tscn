@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://simple_prototype_001"]
+[gd_scene load_steps=3 format=3 uid="uid://simple_prototype_001"]
 
 [ext_resource type="Environment" path="res://assets/environments/default_env.tres" id="1_env"]
+[ext_resource type="Script" path="res://scripts/TestControls.gd" id="test_controls"]
 
 [sub_resource type="BoxMesh" id="ShipMesh_1"]
 size = Vector3(2, 1, 3)
@@ -12,6 +13,7 @@ albedo_color = Color(0.2, 0.4, 0.8, 1)
 size = Vector3(2, 1, 3)
 
 [node name="SimplePrototype" type="Node3D"]
+script = ExtResource("test_controls")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_env")
@@ -23,7 +25,6 @@ MaxThrust = 1000.0
 MaxTorque = 500.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ship"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ShipMesh_1")
 material_override = SubResource("ShipMaterial_1")
 
@@ -33,3 +34,7 @@ shape = SubResource("ShipShape_1")
 [node name="Camera3D" type="Camera3D" parent="Ship"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 5)
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
+light_energy = 2.0
+shadow_enabled = false
