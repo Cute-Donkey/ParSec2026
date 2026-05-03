@@ -15,11 +15,41 @@ func _ready():
 	print("SimpleShip initialized!")
 
 func _physics_process(delta):
-	# Apply thrust force
+	# Handle input
+	var input_vector = Vector3.ZERO
+	var torque_vector = Vector3.ZERO
+	
+	# Thrust controls
+	if Input.is_action_pressed("thrust_forward"):
+		input_vector += -transform.basis.z
+	if Input.is_action_pressed("thrust_backward"):
+		input_vector += transform.basis.z
+	
+	# Rotation controls
+	if Input.is_action_pressed("pitch_up"):
+		torque_vector += transform.basis.x
+	if Input.is_action_pressed("pitch_down"):
+		torque_vector += -transform.basis.x
+	if Input.is_action_pressed("roll_left"):
+		torque_vector += -transform.basis.z
+	if Input.is_action_pressed("roll_right"):
+		torque_vector += transform.basis.z
+	if Input.is_action_pressed("yaw_left"):
+		torque_vector += transform.basis.y
+	if Input.is_action_pressed("yaw_right"):
+		torque_vector += -transform.basis.y
+	
+	# Apply forces
+	if input_vector != Vector3.ZERO:
+		apply_central_force(input_vector.normalized() * max_thrust)
+	
+	if torque_vector != Vector3.ZERO:
+		apply_torque(torque_vector.normalized() * max_torque)
+	
+	# Apply persistent forces
 	if thrust_force != Vector3.ZERO:
 		apply_central_force(thrust_force)
 	
-	# Apply torque for rotation
 	if torque_force != Vector3.ZERO:
 		apply_torque(torque_force)
 
