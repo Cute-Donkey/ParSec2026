@@ -1,7 +1,11 @@
-extends Node
+extends SceneTree
 
-func _ready():
+func _init():
     print("⚛️ Physics performance test starting...")
+    
+    # Create a scene root
+    var root = Node3D.new()
+    add_child(root)
     
     # Create multiple objects to test physics performance
     var objects = []
@@ -19,13 +23,13 @@ func _ready():
         shape.shape = sphere
         body.add_child(shape)
         
-        add_child(body)
+        root.add_child(body)
         objects.append(body)
     
     print("✅ Created ", object_count, " physics objects")
     
     # Run physics simulation for 2 seconds
-    await get_tree().create_timer(2.0).timeout
+    await create_timer(2.0).timeout
     
     # Check performance
     var fps = Engine.get_frames_per_second()
@@ -43,4 +47,4 @@ func _ready():
         obj.queue_free()
     
     print("✅ Physics performance test completed")
-    get_tree().quit(0)
+    quit(0)
