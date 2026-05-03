@@ -19,12 +19,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     pkg-config \
     wget \
     unzip \
+    libfontconfig1 \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Download and install Godot 4.2
+# Download and install Godot 4.6.2 (latest stable)
 RUN wget -O /tmp/godot-linux.x86_64.zip \
-    https://github.com/godotengine/godot/releases/download/4.2-stable/godot-4.2-stable-linux.x86_64.zip \
+    https://github.com/godotengine/godot/releases/download/4.6.2-stable/Godot_v4.6.2-stable_linux.x86_64.zip \
     && unzip /tmp/godot-linux.x86_64.zip -d /opt/godot \
+    && mv /opt/godot/Godot_v4.6.2-stable_linux.x86_64 /opt/godot/Godot \
     && chmod +x /opt/godot/Godot \
     && ln -s /opt/godot/Godot /usr/local/bin/godot \
     && rm /tmp/godot-linux.x86_64.zip
