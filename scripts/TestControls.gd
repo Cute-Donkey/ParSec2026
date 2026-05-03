@@ -13,7 +13,7 @@ func _ready():
 	var asteroid = $Asteroid
 	var camera_position = camera.global_position
 	var camera_forward = -camera.global_transform.basis.z
-	var distance = 10.0
+	var distance = 75.0
 	asteroid.global_position = camera_position + camera_forward * distance
 	
 	print("TestControls initialized!")

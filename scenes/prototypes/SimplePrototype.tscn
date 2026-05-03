@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://scripts/TestControls.gd" id="test_controls"]
 
 [sub_resource type="SphereMesh" id="AsteroidMesh_1"]
-radius = 1.5
-height = 2.5
-radial_segments = 12
-rings = 8
+radius = 15.0
+height = 25.0
+radial_segments = 16
+rings = 12
 
 [sub_resource type="StandardMaterial3D" id="AsteroidMaterial_1"]
 albedo_color = Color(0.4, 0.3, 0.2, 1)
@@ -15,7 +15,7 @@ roughness = 0.8
 metallic = 0.0
 
 [sub_resource type="SphereShape3D" id="AsteroidShape_1"]
-radius = 1.5
+radius = 15.0
 
 [node name="SimplePrototype" type="Node3D"]
 script = ExtResource("test_controls")
@@ -30,7 +30,8 @@ MaxThrust = 1000.0
 MaxTorque = 500.0
 
 [node name="Camera3D" type="Camera3D" parent="Ship"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 5)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 1.5)
+fov = 45.0
 
 [node name="Asteroid" type="RigidBody3D" parent="."]
 mass = 50.0
