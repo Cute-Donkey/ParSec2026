@@ -222,7 +222,13 @@ jobs:
         
         # Download export templates
         wget -q https://github.com/godotengine/godot/releases/download/4.6.2-stable/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
-        unzip -q Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz -d ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
+        unzip -q Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
+        
+        # Move templates to correct location
+        mv templates/* ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable/
+        
+        # Verify templates are in place
+        ls -la ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable/
         
         echo "✅ Export templates installed"
         
