@@ -1,0 +1,98 @@
+name: Documentation Check
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - '**.md'
+      - 'docs/**'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**.md'
+      - 'docs/**'
+
+jobs:
+  check-docs:
+    name: Check Documentation
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: Check Essential Documentation
+      run: |
+        echo "📚 Checking documentation..."
+        
+        # Check for essential files
+        required_docs=("README.md" "README_Prototype.md")
+        
+        for doc in "${required_docs[@]}"; do
+          if [ -f "$doc" ]; then
+            echo "✅ $doc found"
+            
+            # Check for minimum content
+            if [ $(wc -l < "$doc") -lt 10 ]; then
+              echo "⚠️ $doc seems too short"
+            fi
+          else
+            echo "❌ $doc missing"
+          fi
+        done
+        
+        # Check for plans directory
+        if [ -d "plans" ]; then
+          echo "✅ plans directory found"
+          plan_count=$(find plans -name "*.md" | wc -l)
+          echo "📄 Found $plan_count plan documents"
+        else
+          echo "⚠️ plans directory not found"
+        fi
+    
+    - name: Validate Markdown Links
+      run: |
+        echo "🔗 Checking markdown links..."
+        
+        # Install markdown link checker if available
+        if command -v markdown-link-check &> /dev/null; then
+          find . -name "*.md" -exec markdown-link-check {} \;
+        else
+          echo "ℹ️ markdown-link-check not available - skipping link validation"
+        fi
+    
+    - name: Check Code Documentation
+      run: |
+        echo "💻 Checking code documentation..."
+        
+        # Check for C# XML documentation comments
+        if [ -d "src" ]; then
+          cs_files=$(find src -name "*.cs" | wc -l)
+          echo "📝 Found $cs_files C# files"
+          
+          # Check for basic documentation patterns
+          documented_files=0
+          for file in $(find src -name "*.cs"); do
+            if grep -q "/// " "$file"; then
+              ((documented_files++))
+            fi
+          done
+          
+          echo "📚 $documented_files/$cs_files C# files have documentation"
+        fi
+        
+        # Check GDScript comments
+        if [ -d "scripts" ]; then
+          gd_files=$(find scripts -name "*.gd" | wc -l)
+          echo "📝 Found $gd_files GDScript files"
+          
+          commented_files=0
+          for file in $(find scripts -name "*.gd"); do
+            if grep -q "# " "$file"; then
+              ((commented_files++))
+            fi
+          done
+          
+          echo "📚 $commented_files/$gd_files GDScript files have comments"
+        fi

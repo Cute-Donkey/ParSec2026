@@ -1,0 +1,89 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 2 * * 1'  # Weekly on Monday at 2 AM
+
+jobs:
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: Run .NET Security Scan
+      run: |
+        echo "🔒 Running .NET security scan..."
+        
+        # Check for vulnerable packages
+        dotnet list package --vulnerable --include-transitive
+        
+        # Run audit if available
+        if command -v dotnet-audit &> /dev/null; then
+          dotnet audit
+        else
+          echo "ℹ️ dotnet-audit not available - using list package instead"
+        fi
+    
+    - name: Scan for Secrets
+      uses: trufflesecurity/trufflehog@main
+      with:
+        path: ./
+        base: main
+        head: HEAD
+        
+    - name: Check File Permissions
+      run: |
+        echo "🔒 Checking file permissions..."
+        
+        # Check for executable files that shouldn't be
+        find . -type f -executable -name "*.cs" -exec echo "⚠️ Executable C# file: {}" \;
+        find . -type f -executable -name "*.gd" -exec echo "⚠️ Executable GDScript file: {}" \;
+        
+        # Check for sensitive file patterns
+        sensitive_patterns=("*.pem" "*.key" "*.p12" "id_rsa" "*.pfx")
+        for pattern in "${sensitive_patterns[@]}"; do
+          if find . -name "$pattern" | grep -v ".git" | head -5; then
+            echo "⚠️ Found potential sensitive files matching $pattern"
+          fi
+        done
+    
+    - name: Validate .gitignore
+      run: |
+        echo "🔒 Validating .gitignore..."
+        
+        # Check for essential .gitignore entries
+        required_entries=(
+          ".godot/"
+          ".mono/"
+          "*.tmp"
+          "user://"
+          "*.log"
+          "*.pdb"
+        )
+        
+        for entry in "${required_entries[@]}"; do
+          if ! grep -q "^$entry" .gitignore; then
+            echo "⚠️ .gitignore missing recommended entry: $entry"
+          fi
+        done
+        
+        # Check for files that should be ignored
+        if [ -d ".godot" ]; then
+          echo "⚠️ .godot directory should be in .gitignore"
+        fi
+        
+        if [ -d ".mono" ]; then
+          echo "⚠️ .mono directory should be in .gitignore"
+        fi
