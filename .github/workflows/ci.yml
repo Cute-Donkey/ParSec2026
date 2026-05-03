@@ -279,8 +279,10 @@ jobs:
         fi
         
         if [ ! -f "README_Prototype.md" ]; then
-          fi
-        done
+          echo "⚠️ README_Prototype.md missing"
+        fi
+        
+        echo "✅ Documentation validation passed"
         
         echo "✅ .gitignore validation passed"
 
