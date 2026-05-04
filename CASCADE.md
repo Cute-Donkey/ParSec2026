@@ -45,6 +45,26 @@
 - **Plan Synchronization:** Keep both English and German plans current and synchronized - `parsec_remake_plan_en.md` and German translation files must reflect actual current implementation status
 - **Translation System Implementation:** At specified milestone (Phase 7), implement text resources and dynamic translation system for all game text, with automatic detection of text elements and orientation for future changes
 
+## Plan Language Management System
+
+### Dual Language Requirement
+- **All plans must exist in both languages**: English (*_en.md) and preferred language (*_{lang}.md)
+- **Synchronization mandatory**: Both language versions must be kept current and identical in content
+- **Structure preservation**: Tables, code blocks, formatting must be identical across languages
+- **Translation accuracy**: Technical terms must be translated consistently
+
+### Language Preference Detection
+- **Agent checks existing plans**: If only one language exists, query developer preference
+- **Generic query example**: "I see plans exist only in English. What is your preferred language for plan documentation? (e.g., 'de' for German, 'fr' for French, 'en' for English)"
+- **Preference storage**: Remember choice for future plan creation
+- **Fallback**: Use English if no preference specified
+
+### Git Exclude Management
+- **Exclude location**: Use `.git/info/exclude` (NOT `.gitignore`)
+- **Auto-creation**: Agent automatically adds preferred language plan files to `.git/info/exclude`
+- **Persistence**: Exclude entries survive container rebuilds via automatic recreation
+- **Scope**: Only preferred language plans are excluded; English plans remain tracked
+
 ### Technical Constraints
 - **Web compatibility:** C# disabled, only GDScript
 - **CI/CD:** GitHub Actions with multi-platform builds (Linux, Windows, Web)
@@ -122,4 +142,4 @@ This file serves as persistent context for CASCADE AI agent across chat sessions
 - Translation requirements evolve
 
 ## Last Updated
-2026-05-04 - Added plan synchronization instruction for both language versions
+2026-05-04 - Added comprehensive Plan Language Management System with dual language requirements, preference detection, and .git/info/exclude management
