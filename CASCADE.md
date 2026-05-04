@@ -29,6 +29,7 @@
 ## Development Rules
 
 ### Git Workflow
+- **NO autonomous Git changes** - User explicitly stated: "keine selbstständigen änderungen am git will. keine commits keine pushes. nichts."
 - **NO automatic pushes** - User controls when to push manually
 - Only commit when explicitly requested
 - Default behavior: commit only, no push
@@ -40,6 +41,9 @@
   - German: Separate files (excluded from .gitignore)
 - All game text currently in German, needs translation system
 - Translation requirements documented in Phase 7 (Week 18-19)
+- **Development Plans:** Located under `@plans/` directory with dual language support
+- **Plan Synchronization:** Keep both English and German plans current and synchronized - `parsec_remake_plan_en.md` and German translation files must reflect actual current implementation status
+- **Translation System Implementation:** At specified milestone (Phase 7), implement text resources and dynamic translation system for all game text, with automatic detection of text elements and orientation for future changes
 
 ### Technical Constraints
 - **Web compatibility:** C# disabled, only GDScript
@@ -66,6 +70,7 @@
 - Modal dialog with key bindings
 - Toggle with F1 key
 - Covers movement, special functions, display info
+- **Automatic Updates:** Key binding changes are automatically reflected in F1 help dialog
 
 ## Known Issues & Solutions
 
@@ -117,4 +122,4 @@ This file serves as persistent context for CASCADE AI agent across chat sessions
 - Translation requirements evolve
 
 ## Last Updated
-2026-05-03 - Added translation requirements and German documentation rules
+2026-05-04 - Added plan synchronization instruction for both language versions

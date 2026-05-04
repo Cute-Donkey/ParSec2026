@@ -41,35 +41,35 @@
 ## Phase 2: Early Prototype (Week 3)
 
 ### 2.1 Minimal Prototype
-- [ ] Create Godot project with C#
-- [ ] Simple space world with one asteroid
-- [ ] Basic spaceship with Newtonian physics
-- [ ] Thrust and maneuvering systems
-- [ ] Simple weapon system (laser)
-- [ ] Asteroid can be shot and destroyed
-- [ ] Basic collision detection
+- [x] Create Godot project with GDScript
+- [x] Simple space world with one asteroid
+- [x] Basic spaceship with Newtonian physics
+- [x] Thrust and maneuvering systems
+- [x] Simple weapon system (laser)
+- [x] Asteroid can be shot and destroyed
+- [x] Basic collision detection
 
 ### 2.2 Prototype Testing
-- [ ] Flight physics test (movement in space)
-- [ ] Weapon test (hit detection)
-- [ ] Performance measurement
-- [ ] Control feedback collection
+- [x] Flight physics test (movement in space)
+- [x] Weapon test (hit detection)
+- [x] Performance measurement
+- [x] Control feedback collection
 
 ---
 
 ## Phase 3: Core Systems (Week 4-7)
 
 ### 3.1 Physics Engine
-- [ ] Custom RigidBody3D implementation
-- [ ] Newtonian motion laws
-- [ ] Thrust and maneuvering systems
-- [ ] Collision detection for space objects
+- [x] Custom RigidBody3D implementation
+- [x] Newtonian motion laws
+- [x] Thrust and maneuvering systems
+- [x] Collision detection for space objects
 
 ### 3.2 Ship Systems
-- [ ] Define ship classes (Fighter, Cruiser, etc.)
-- [ ] Implement weapon systems
-- [ ] Shield and armor systems
-- [ ] Energy management
+- [x] Define ship classes (Fighter, Cruiser, etc.)
+- [x] Implement weapon systems (laser with projectile physics)
+- [x] Shield and armor systems
+- [x] Energy management (laser energy consumption)
 
 ### 3.3 Controls
 - [ ] Input system for joystick/keyboard
@@ -174,16 +174,16 @@
 - **Scenario**: Empty space with 1 asteroid
 - **Ship**: Simple fighter model
 - **Physics**: Newtonian movement (no friction)
-- **Weapons**: Basic laser with hit detection
-- **Controls**: Keyboard (WASD + Space)
+- **Weapons**: Basic laser with hit detection and projectile physics
+- **Controls**: Keyboard (Arrow keys + Space)
 - **Graphics**: Basic 3D rendering without effects
 
 ### Prototype Success Criteria
-- [ ] Ship moves realistically in space
-- [ ] Asteroid can be hit
-- [ ] Asteroid explodes on hit
-- [ ] Controls are intuitive
-- [ ] 60 FPS on standard hardware
+- [x] Ship moves realistically in space
+- [x] Asteroid can be hit
+- [x] Asteroid explodes on hit
+- [x] Controls are intuitive
+- [x] 60 FPS on standard hardware
 
 ---
 
